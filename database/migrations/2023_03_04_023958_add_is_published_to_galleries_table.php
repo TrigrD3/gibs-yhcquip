@@ -18,6 +18,10 @@ return new class extends Migration
         Schema::table('events', function (Blueprint $table) {
             $table->tinyInteger('is_published')->default(0)->after('description');
         });
+
+        Schema::table('academics', function (Blueprint $table) {
+            $table->tinyInteger('is_published')->default(0)->after('description');
+        });
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\AcademicController as AdminAcademicController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,14 +36,23 @@ Route::middleware('auth')->group(function () {
 // administrator
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::resource('gallery', AdminGalleryController::class);
 
+    // gallery
+    Route::resource('gallery', AdminGalleryController::class);
     Route::post('gallery-image/{gallery}', [AdminGalleryController::class, 'imageStore'])->name('gallery.image.store');
     Route::delete('gallery-image/{gallery}', [AdminGalleryController::class, 'imageDestroy'])->name('gallery.image.destroy');
 
+    // event
     Route::resource('event', AdminEventController::class);
     Route::post('event-image/{event}', [AdminEventController::class, 'imageStore'])->name('event.image.store');
     Route::delete('event-image/{event}', [AdminEventController::class, 'imageDestroy'])->name('event.image.destroy');
+
+    // academic
+    Route::resource('academic', AdminAcademicController::class);
+    Route::post('academic-image/{academic}', [AdminAcademicController::class, 'imageStore'])->name('academic.image.store');
+    Route::delete('academic-image/{academic}', [AdminAcademicController::class, 'imageDestroy'])->name('academic.image.destroy');        
+    Route::get('academics', [AdminAcademicController::class, 'index2'])->name('academic.index2');        
+
 });
 
 

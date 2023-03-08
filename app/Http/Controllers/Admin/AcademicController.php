@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\StoreEventRequest;
-use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\StoreAcademicRequest;
+use App\Http\Requests\UpdateAcademicRequest;
+use App\Models\Academic;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use App\Models\Event;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class EventController extends Controller
+
+class AcademicController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $events = Event::all();
-        return view('admin.event.index', compact('events'));
+        $academics = Academic::all();
+        return view('admin.academic.index', compact('academics'));
+    }
+
+    public function index2()
+    {
+        $academics = Academic::all();
+        return view('admin.academic.index2', compact('academics'));
     }
 
     /**
@@ -27,8 +34,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        $url = route('admin.event.store');
-        return view('admin.event.form', compact('url'));
+        $url = route('admin.academic.store');
+        return view('admin.academic.form', compact('url'));
     }
 
     /**
@@ -39,38 +46,33 @@ class EventController extends Controller
         $data = $request->validate([
             'title' => 'string|required',
             'description' => 'string|nullable',
-            'location' => 'string|required',
-            'date' => 'required|date_format:d/m/Y',
         ]);
-    
-        $data['slug'] = Str::slug($request->title);
-        $data['date'] = Carbon::createFromFormat('d/m/Y', $data['date']);
-        $data['location'] = $request->location;
-    
-        $event = Event::create($data);
-    
-        toast('Your event has been submitted!', 'success');
-        return redirect()->route('admin.event.index');
-    }
-    
 
+        $data['slug'] = Str::slug($request->title);
+        $academic = Academic::create($data);
+
+        toast('Your academic has been submitted!', 'success');
+        return redirect()->route('admin.academic.index');
+
+    }
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-        $event = Event::findOrFail($id);
-        return view('admin.event.show', compact('event'));
+        $academic = Academic::findOrFail($id);
+        return view('admin.academic.show', compact('academic'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Event $event)
+    public function edit(String $id)
     {
-        $url = route('admin.event.update', $event->id);
-        return view('admin.event.form', compact('url', 'event'));
+        $academic = Academic::findOrFail($id);
+        $url = route('admin.academic.update', $academic->id);
+        return view('admin.academic.form', compact('url', 'academic'));
     }
 
     /**
@@ -78,41 +80,36 @@ class EventController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $event = Event::findOrFail($id);
         $data = $request->validate([
             'title' => 'string|required',
             'description' => 'string|nullable',
-            'date' => 'required|date_format:d/m/Y',
-            'location' => 'string|required',
         ]);
 
         $data['slug'] = Str::slug($request->title);
-        $data['date'] = Carbon::createFromFormat('d/m/Y', $data['date']);
-        $data['location'] = $request->location;
-        $event->update($data);
+        $academic = Academic::findOrFail($id);
+        $academic->update($data);
 
-        toast('Your event has been updated!','success');
-        return redirect()->route('admin.event.index');
+        toast('Your academic has been updated!', 'success');
+        return redirect()->route('admin.academic.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Event $event)
+    public function destroy(Academic $academic)
     {
-        $event->delete();
-
-        toast('Your event has been deleted!','success');
-        return redirect()->route('admin.event.index');
+        $academic->delete();
+        toast('Your academic has been deleted!', 'success');
+        return redirect()->route('admin.academic.index');
     }
 
     public function imageStore(Request $request, $id)
     {
         // dd($request->all());
-        $event = Event::findOrFail($id);
+        $academic = Academic::findOrFail($id);
 
         if ($request->has('images')) {
-            $event->addMultipleMediaFromRequest(['images'])
+            $academic->addMultipleMediaFromRequest(['images'])
             ->each(function ($fileAdder) {
                 $fileAdder->toMediaCollection('images');
             });
