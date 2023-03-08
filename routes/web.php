@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +39,11 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
     Route::post('gallery-image/{gallery}', [AdminGalleryController::class, 'imageStore'])->name('gallery.image.store');
     Route::delete('gallery-image/{gallery}', [AdminGalleryController::class, 'imageDestroy'])->name('gallery.image.destroy');
-});
 
+    Route::resource('event', AdminEventController::class);
+    Route::post('event-image/{event}', [AdminEventController::class, 'imageStore'])->name('event.image.store');
+    Route::delete('event-image/{event}', [AdminEventController::class, 'imageDestroy'])->name('event.image.destroy');
+});
 
 
 require __DIR__.'/auth.php';

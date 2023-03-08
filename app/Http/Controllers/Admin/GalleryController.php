@@ -119,12 +119,14 @@ class GalleryController extends Controller
 
     }
 
-    public function imageDestroy($id)
+    public function imageDestroy($image)
     {
-        $media = Media::findOrFail($id);
+        $media = Media::findOrFail($image);
         $media->delete();
 
         toast('Your Image has been deleted', 'success');
         return redirect()->back();
+
     }
 }
+

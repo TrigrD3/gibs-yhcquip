@@ -22,6 +22,8 @@
     <link rel="stylesheet"
         href="{{ asset('dist') }}/assets/vendor/tom-select/dist/css/tom-select.bootstrap5.css">
 
+    {{-- CSS flatpickr --}}
+    @stack('flatpickr-css')
     <!-- CSS Front Template -->
 
     <link rel="preload" href="{{ asset('dist') }}/assets/css/theme.min.css" data-hs-appearance="default"
@@ -207,6 +209,7 @@
         }
     </script>
 
+
     @stack('styles')
 </head>
 
@@ -362,6 +365,13 @@
                             <a class="nav-link {{ Request()->routeIs('admin.gallery.*') ? 'active' : '' }}" href="{{ route('admin.gallery.index') }}" data-placement="left">
                                 <i class="bi-book nav-icon"></i>
                                 <span class="nav-link-title">Gallery</span>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <a class="nav-link {{ Request()->routeIs('admin.event.*') ? 'active' : '' }}" href="{{ route('admin.event.index') }}" data-placement="left">
+                                <i class="bi-calendar-event nav-icon"></i>
+                                <span class="nav-link-title">Events</span>
                             </a>
                         </div>
                     </div>

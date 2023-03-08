@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::table('galleries', function (Blueprint $table) {
             $table->tinyInteger('is_published')->default(0)->after('description');
         });
+
+        Schema::table('events', function (Blueprint $table) {
+            $table->tinyInteger('is_published')->default(0)->after('description');
+        });
     }
 
     /**
