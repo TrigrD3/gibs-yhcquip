@@ -375,26 +375,18 @@
                             </a>
                         </div>
 
-                        <div class="nav-item">
-                            <a class="nav-link {{ Request()->routeIs('admin.academic.*') ? 'active' : '' }}" href="{{ route('admin.academic.index') }}" data-placement="left">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {{ Request()->routeIs('admin.academic.*') ? 'active' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-placement="left">
                                 <i class="bi-mortarboard nav-icon"></i>
                                 <span class="nav-link-title">academics</span>
                             </a>
-                        </div>
-
-                        <!-- Dropdown -->
-                        <div class="btn-group nav-item">
-                            <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenuButtonWhite" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi-mortarboard nav-icon"></i>
-                                <span class="nav-link-title">academics</span>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonWhite">
-                            <a class="dropdown-item" href="{{ route('admin.academic.index') }}">Admin Academic</a>
-                            <a class="dropdown-item" href="{{ route('admin.academic.index2') }}">Academic</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                        <!-- End Dropdown -->
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('admin.academic.index') }}">Admin academics</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.academic.index2') }}">Academic View</a></li>
+                            </ul>
+                        </li>
+                        
                     </div>
 
                 </div>

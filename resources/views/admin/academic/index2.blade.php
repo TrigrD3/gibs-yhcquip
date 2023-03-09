@@ -11,6 +11,10 @@
     text-align: left; /* Center the text */
     }
 
+    .academics-article img {
+        max-width: 100%;
+        height: auto;
+    }
 
     </style>
 
@@ -70,12 +74,17 @@
         <div class="container academics-article">
             @foreach ($academics as $key => $academic)
             <div class="row align-items-center mb-3">
-                <div class="col-6 {{ $key % 2 == 0 ? 'order-1' : 'order-2' }}">
+                <div class="col-md-6 order-md-{{ $key % 2 == 0 ? '1' : '2' }}">
                     @if ($academic->getFirstMedia('images'))
-                        <img src="{{ $academic->getFirstMediaUrl('images') }}" class="img-thumbnail rounded-4 shadow-sm" alt="">
+                        <div class="image-container position-relative">
+                            <img src="{{ $academic->getFirstMediaUrl('images') }}" class="img-thumbnail rounded-4 shadow-sm" alt="">
+                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute top-0 end-0 w-auto h-25" alt="">
+                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute bottom-0 start-0 w-auto h-25" alt="">
+
+                        </div>
                     @endif
                 </div>
-                <div class="col-6 {{ $key % 2 == 0 ? 'order-2' : 'order-1' }}">
+                <div class="col-md-6 order-md-{{ $key % 2 == 0 ? '2' : '1' }}">
                     <div class="row">
                         <h1>{{ $academic->title }}</h1>
                     </div>
@@ -84,7 +93,8 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+        @endforeach
+        
 
         </div>
         
