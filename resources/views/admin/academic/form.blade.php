@@ -42,12 +42,23 @@
                         </div>
 
                         <div class="mb-3">
-                            <input type="file" id="customFileEg1" name="image" class="form-control">
+                            <label class="form-label" for="image">Image</label>
+                            <input type="file" id="image" name="image" class="form-control" onchange="previewImage(this);">
+                        </div>
+                        <div class="mb-3" id="preview">
+                            @if (@$academic && $academic->hasMedia('image'))
+                                <img src="{{ $academic->getFirstMediaUrl('image', 'thumb') }}" alt="">
+                                <div class="form-check mt-2">
+                                    <input class="form-check-input" type="checkbox" value="1" name="delete_image" id="delete_image">
+                                    <label class="form-check-label" for="delete_image">
+                                        Delete existing image
+                                    </label>
+                                </div>
+                            @endif
                         </div>
 
                         
                         
-                        <!-- End Flatpickr -->
 
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -56,5 +67,21 @@
         </div>
 
     </div>
+
+    @push('scripts')
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#preview').html('<img src="' + e.target.result + '" alt="">');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+    </script>
+    
+@endpush
     <!-- End Content -->
 </x-app-layout>

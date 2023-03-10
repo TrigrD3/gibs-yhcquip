@@ -93,13 +93,19 @@ class AcademicController extends Controller
         $academic = Academic::findOrFail($id);
         $academic->update($data);
 
-        if ($request->hasFile('image')) { // check if an image has been uploaded
-            $academic->addMediaFromRequest('image')->toMediaCollection('image');
+        if ($request->hasFile('image')) { // check if a new image has been uploaded
+            if ($academic->hasMedia('image')) { // check if an existing image exists
+                $academic->getFirstMedia('image')->delete(); // delete the existing image
+            }
+            $academic->addMediaFromRequest('image')->toMediaCollection('image'); // add the new image
+        } else if ($request->input('delete_image')) { // check if the delete image checkbox is checked
+            $academic->clearMediaCollection('image'); // delete the existing image
         }
 
         toast('Your academic has been updated!', 'success');
         return redirect()->route('admin.academic.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
