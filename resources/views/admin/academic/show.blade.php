@@ -44,7 +44,7 @@
                   enctype="multipart/form-data">
                   @csrf
                   <div class="mb-3">
-                      <input type="file" id="customFileEg1" name="images[]" multiple class="form-control">
+                      <input type="file" id="customFileEg1" name="image" class="form-control">
                   </div>
                   <button type="submit" class="btn btn-primary btn-sm">Upload</button>
               </form>

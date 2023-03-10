@@ -25,7 +25,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="mb-3 card-title">{{ @$academic ? 'Edit' : 'Create' }} academic</h4>
-                    <form action="{{ $url }}" method="POST">
+                    <form action="{{ $url }}" method="POST" enctype="multipart/form-data">
                         @if (@$academic)
                             @method('PUT')
                         @endif
@@ -40,6 +40,12 @@
                             <label class="form-label" for="description">Description</label>
                             <textarea id="description" name="description" class="form-control" placeholder="Textarea field" rows="4">{{ @$academic->description }}</textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <input type="file" id="customFileEg1" name="image" class="form-control">
+                        </div>
+
+                        
                         
                         <!-- End Flatpickr -->
 

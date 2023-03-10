@@ -51,6 +51,10 @@ class AcademicController extends Controller
         $data['slug'] = Str::slug($request->title);
         $academic = Academic::create($data);
 
+        if ($request->hasFile('image')) {
+            $academic->addMediaFromRequest('image')->toMediaCollection('image');
+        }
+
         toast('Your academic has been submitted!', 'success');
         return redirect()->route('admin.academic.index');
 
@@ -89,6 +93,10 @@ class AcademicController extends Controller
         $academic = Academic::findOrFail($id);
         $academic->update($data);
 
+        if ($request->hasFile('image')) { // check if an image has been uploaded
+            $academic->addMediaFromRequest('image')->toMediaCollection('image');
+        }
+
         toast('Your academic has been updated!', 'success');
         return redirect()->route('admin.academic.index');
     }
@@ -105,20 +113,16 @@ class AcademicController extends Controller
 
     public function imageStore(Request $request, $id)
     {
-        // dd($request->all());
         $academic = Academic::findOrFail($id);
 
-        if ($request->has('images')) {
-            $academic->addMultipleMediaFromRequest(['images'])
-            ->each(function ($fileAdder) {
-                $fileAdder->toMediaCollection('images');
-            });
+        if ($request->hasFile('image')) {
+            $academic->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
-        toast('Your Image has been uploaded!','success');
+        toast('Your Image has been uploaded!', 'success');
         return redirect()->back();
-
     }
+
 
     public function imageDestroy($image)
     {

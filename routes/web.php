@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\AcademicController as AdminAcademicController;
+use App\Http\Controllers\View\AcademicController as ViewAcademicController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -55,5 +56,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
 });
 
+// view
+Route::name('view.')->group(function() {
+    Route::get('academics', [ViewAcademicController::class, 'index'])->name('academic.index');
+});
 
 require __DIR__.'/auth.php';

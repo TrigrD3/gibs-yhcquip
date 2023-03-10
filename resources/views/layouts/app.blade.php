@@ -384,6 +384,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ route('admin.academic.index') }}">Admin academics</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.academic.index2') }}">Academic View</a></li>
+                                <li><a class="dropdown-item" href="{{ route('view.academic.index') }}">Academic View 2</a></li>
                             </ul>
                         </li>
                         

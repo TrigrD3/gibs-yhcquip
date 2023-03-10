@@ -1,15 +1,26 @@
 <x-app-layout>
     @push('styles')
     <style>
-    .page-header {
+.page-header {
     /* Set the background image */
-    background-image: url("../img/banner.jpg");
-    background-size: cover; /* Scale the image to cover the container */
+    background-image: url("../img/banner.png");
+    background-size: 100% auto; /* Stretch the image horizontally */
     background-position: center; /* Center the image vertically and horizontally */
     padding: 50px; /* Add some padding to the element */
     color: #fff; /* Set the text color to white */
-    text-align: left; /* Center the text */
-    }
+    text-align: left; /* Set the text alignment to left */
+    height: 352px; /* Set the height to 352px */
+    display: flex; /* Use flexbox to center the content */
+    flex-direction: column; /* Stack the content vertically */
+    justify-content: center; /* Center the content vertically */
+    align-items: flex-start; /* Align the content to the left */
+    font-size: 36px; /* Increase the font size to 36px */
+}
+
+
+
+
+
 
     .academics-article img {
         max-width: 100%;
@@ -75,11 +86,11 @@
             @foreach ($academics as $key => $academic)
             <div class="row align-items-center mb-3">
                 <div class="col-md-6 order-md-{{ $key % 2 == 0 ? '1' : '2' }}">
-                    @if ($academic->getFirstMedia('images'))
+                    @if ($academic->getFirstMedia('image'))
                         <div class="image-container position-relative">
-                            <img src="{{ $academic->getFirstMediaUrl('images') }}" class="img-thumbnail rounded-4 shadow-sm" alt="">
-                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute top-0 end-0 w-auto h-25" alt="">
-                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute bottom-0 start-0 w-auto h-25" alt="">
+                            <img src="{{ $academic->getFirstMediaUrl('image') }}" class="img-thumbnail rounded-4 shadow-sm" alt="">
+                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute top-0 end-0" alt="">
+                            <img src="{{ asset('img/vector.png') }}" class="img-overlay position-absolute bottom-0 start-0" alt="">
 
                         </div>
                     @endif
