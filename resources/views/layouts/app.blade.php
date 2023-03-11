@@ -375,6 +375,13 @@
                             </a>
                         </div>
 
+                        <div class="nav-item">
+                            <a class="nav-link {{ Request()->routeIs('admin.career.*') ? 'active' : '' }}" href="{{ route('admin.career.index') }}" data-placement="left">
+                                <i class="bi bi-briefcase nav-icon"></i>
+                                <span class="nav-link-title">Career</span>
+                            </a>
+                        </div>
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ Request()->routeIs('admin.academic.*') ? 'active' : '' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-placement="left">

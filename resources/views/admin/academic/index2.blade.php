@@ -9,7 +9,7 @@
     padding: 50px; /* Add some padding to the element */
     color: #fff; /* Set the text color to white */
     text-align: left; /* Set the text alignment to left */
-    height: 352px; /* Set the height to 352px */
+    height: 250px; /* Set the height to 352px */
     display: flex; /* Use flexbox to center the content */
     flex-direction: column; /* Stack the content vertically */
     justify-content: center; /* Center the content vertically */
@@ -35,7 +35,7 @@
     <!-- Content -->
     <div class="content container-fluid">
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="page-header md">
             <div class="row">
                 <h3>Information</h3>
             </div>

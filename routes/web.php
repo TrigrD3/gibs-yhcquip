@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GalleryController as AdminGalleryController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\AcademicController as AdminAcademicController;
 use App\Http\Controllers\View\AcademicController as ViewAcademicController;
+use App\Http\Controllers\Admin\CareerController as AdminCareerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('academic', AdminAcademicController::class);
     Route::post('academic-image/{academic}', [AdminAcademicController::class, 'imageStore'])->name('academic.image.store');
     Route::delete('academic-image/{academic}', [AdminAcademicController::class, 'imageDestroy'])->name('academic.image.destroy');        
-    Route::get('academics', [AdminAcademicController::class, 'index2'])->name('academic.index2');        
+    Route::get('academics', [AdminAcademicController::class, 'index2'])->name('academic.index2'); 
+    
+    // career
+    Route::resource('career', AdminCareerController::class);
+    Route::post('career-image/{career}', [AdminCareerController::class, 'imageStore'])->name('career.image.store');
+    Route::delete('career-image/{career}', [AdminCareerController::class, 'imageDestroy'])->name('career.image.destroy');
 
 });
 

@@ -8,7 +8,6 @@ use App\Models\Academic;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Event;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 

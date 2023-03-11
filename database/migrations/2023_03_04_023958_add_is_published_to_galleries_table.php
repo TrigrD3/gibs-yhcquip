@@ -22,6 +22,10 @@ return new class extends Migration
         Schema::table('academics', function (Blueprint $table) {
             $table->tinyInteger('is_published')->default(0)->after('description');
         });
+
+        Schema::table('careers', function (Blueprint $table) {
+            $table->tinyInteger('is_published')->default(0)->after('description');
+        });
     }
 
     /**
